@@ -12,7 +12,7 @@ const {
 //rutas Tabla Personas
 router.get('/personas',getPersonas);
 router.post('/crearPersonas',createPersonas);
-router.delete('/deletePersonas/:cedula',deletePersonas);
+router.delete('/deletePersonas/:clave',deletePersonas);
 
 //rutas Tabla PerCartilla
 router.get('/perCartilla',PerCartilla);

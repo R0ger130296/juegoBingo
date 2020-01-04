@@ -14,22 +14,22 @@ const getPersonas= async(req,res)=>{
 };
 //tabla Personas Create
 const createPersonas=async(req,res)=>{
-const {nombre,cedula,clave,direccion,email,telefono,tipopersona}=req.body;
-const response = await pool.query('INSERT INTO personas(nombre,cedula,clave,direccion,email,telefono,tipopersona) VALUES($1,$2,$3,$4,$5,$6,$7)',[nombre,cedula,clave,direccion,email,telefono,tipopersona]);
+const {nombre,clave,tipopersona}=req.body;
+const response = await pool.query('INSERT INTO personas(nombre,clave,tipopersona) VALUES($1,$2,$3)',[nombre,clave,tipopersona]);
 res.json({
     massage:'usuarios creado',
     body:{
-        user:{nombre,cedula,clave,direccion,email,telefono,tipopersona}
+        user:{nombre,clave,tipopersona}
     }
    })
 };
 //tabla Personas Delete
 const deletePersonas = async (req, res) => {
-    const cedula = parseInt(req.params.cedula);
-    await pool.query('DELETE FROM personas where cedula = $1', [
-        cedula
+    const clave = parseInt(req.params.clave);
+    await pool.query('DELETE FROM personas where clave = $1', [
+        clave
     ]);
-    res.json(`persona ${cedula} eliminada`);
+    res.json(`persona ${clave} eliminada`);
 };
 
 
