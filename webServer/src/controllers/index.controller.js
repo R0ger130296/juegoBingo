@@ -9,83 +9,74 @@ post:'5432'
 });
 //tabla Personas Get 
 const getPersonas= async(req,res)=>{
-   const response= await pool.query('SELECT * FROM personas');
+   const response= await pool.query('SELECT * FROM persona');
    res.json(response.rows);
 };
 //tabla Personas Create
 const createPersonas=async(req,res)=>{
-const {nombre,clave,tipopersona}=req.body;
-const response = await pool.query('INSERT INTO personas(nombre,clave,tipopersona) VALUES($1,$2,$3)',[nombre,clave,tipopersona]);
+const {nombre,idcartilla}=req.body;
+const response = await pool.query('INSERT INTO persona(nombre,idcartilla) VALUES($1,$2)',[nombre,idcartilla]);
 res.json({
     massage:'usuarios creado',
     body:{
-        user:{nombre,clave,tipopersona}
+        user:{nombre,idcartilla}
     }
    })
 };
 //tabla Personas Delete
 const deletePersonas = async (req, res) => {
-    const clave = parseInt(req.params.clave);
-    await pool.query('DELETE FROM personas where clave = $1', [
-        clave
+    const idpersona = parseInt(req.params.idpersona);
+    await pool.query('DELETE FROM persona where idpersona = $1', [
+        idpersona
     ]);
-    res.json(`persona ${clave} eliminada`);
+    res.json(`persona ${idpersona} eliminada`);
 };
 
 
 
 //tabla cartillas Get 
 const cartilla= async(req,res)=>{
-    const response= await pool.query('SELECT * FROM cartillas');
+    const response= await pool.query('SELECT * FROM cartilla');
     res.json(response.rows);
  };
  //tabla cartillas Create
  const createCartilla=async(req,res)=>{
- const {numeros,codigo,fkpersonas}=req.body;
- const response = await pool.query('INSERT INTO cartillas(numeros,codigo,fkpersonas) VALUES($1,$2,$3)',[numeros,codigo,fkpersonas]);
+ const {numero,codigo}=req.body;
+ const response = await pool.query('INSERT INTO cartilla(numero,codigo) VALUES($1,$2)',[numero,codigo]);
  res.json({
      massage:'cartilla creado',
      body:{
-         user:{numeros,codigo,fkpersonas}
+         user:{numero,codigo}
      }
     })
  };
- //tabla cartillas Delete
- const deleteCartilla = async (req, res) => {
-    const codigo = parseInt(req.params.codigo);
-    await pool.query('DELETE FROM cartillas where codigo = $1', [
-        codigo
-    ]);
-    res.json(`cartilla ${codigo} eliminada`);
-};
 
+
+ //tabla Administrador Get 
+const admi= async(req,res)=>{
+    const response= await pool.query('SELECT * FROM administrador');
+    res.json(response.rows);
+ };
+ //tabla administrador Create
+ const createAdmi=async(req,res)=>{
+ const {idpersona,clave}=req.body;
+ const response = await pool.query('INSERT INTO administrador(idpersona,clave) VALUES($1,$2)',[idpersona,clave]);
+ res.json({
+     massage:'administrador creado',
+     body:{
+         user:{idpersona,clave}
+     }
+    })
+ };
+ //tabla administrador Delete
+ const deleteAdmi = async (req, res) => {
+     const idadministrador= parseInt(req.params.idadministrador);
+     await pool.query('DELETE FROM administrador where idadministrador = $1', [
+        idadministrador
+     ]);
+     res.json(`persona ${idadministrador} eliminada`);
+ };
  
-
-// tabla PersonaCartilla get 
-// const PerCartilla= async(req,res)=>{
-//     const response= await pool.query('SELECT * FROM personacartilla');
-//     res.json(response.rows);
-//  };
-//  //tabla PersonaCartilla Create
-// const createPerCartilla=async(req,res)=>{
-//     const {fkcartilla,fkpersona}=req.body;
-//     const response = await pool.query('INSERT INTO personacartilla(fkcartilla,fkpersona) VALUES($1,$2)',[fkcartilla,fkpersona]);
-//     res.json({
-//         massage:'personacartilla creada',
-//         body:{
-//             user:{fkcartilla,fkpersona}
-//         }
-//        })
-//     };
-//     //tabla Personas Delete
-// const deletePerCartilla = async (req, res) => {
-//     const id = parseInt(req.params.id);
-//     await pool.query('DELETE FROM personacartilla where id = $1', [
-//         id
-//     ]);
-//     res.json(`personacartilla ${id} eliminada`);
-// };
-
 module.exports={
     //metodos de la tabla Personas
     getPersonas,
@@ -95,9 +86,9 @@ module.exports={
     //metodos de la tabla Cartillas
     cartilla,
     createCartilla,
-    deleteCartilla, 
-    //metodos de la tablaPersonaCartilla
-    // PerCartilla,
-    // createPerCartilla,
-    // deletePerCartilla
+
+    //metodos de la tabla administrador
+    admi,
+    createAdmi,
+    deleteAdmi
 }

@@ -6,17 +6,23 @@ const {
     deletePersonas,
     cartilla,
     createCartilla,
-    deleteCartilla}= require('../controllers/index.controller')
+    admi,
+    createAdmi,
+    deleteAdmi
+}= require('../controllers/index.controller')
 
 //rutas Tabla Personas
-router.get('/personas',getPersonas);
-router.post('/crearPersonas',createPersonas);
-router.delete('/deletePersonas/:clave',deletePersonas);
+router.get('/persona',getPersonas);
+router.post('/createPersona',createPersonas);
+router.delete('/deletePersona/:idpersona',deletePersonas);
 
 
 //Rutasrabla Cartillas
-router.get('/cartillas',cartilla);
+router.get('/cartilla',cartilla);
 router.post('/createCartilla',createCartilla);
-router.delete('/deleteCartilla/:codigo',deleteCartilla);
 
+//Rutas tabla administrador
+router.get('/admi',admi);
+router.post('/createAdmi',createAdmi);
+router.delete('/deleteAdmi/:idadministrador',deleteAdmi);
 module.exports =router;
