@@ -34,6 +34,32 @@ const deletePersonas = async (req, res) => {
 
 
 
+//tabla cartillas Get 
+const cartilla= async(req,res)=>{
+    const response= await pool.query('SELECT * FROM cartillas');
+    res.json(response.rows);
+ };
+ //tabla cartillas Create
+ const createCartilla=async(req,res)=>{
+ const {numeros,codigo}=req.body;
+ const response = await pool.query('INSERT INTO cartillas(numeros,codigo) VALUES($1,$2)',[numeros,codigo]);
+ res.json({
+     massage:'cartilla creado',
+     body:{
+         user:{numeros,codigo}
+     }
+    })
+ };
+ //tabla cartillas Delete
+ const deleteCartilla = async (req, res) => {
+    const codigo = parseInt(req.params.codigo);
+    await pool.query('DELETE FROM cartillas where codigo = $1', [
+        codigo
+    ]);
+    res.json(`cartilla ${codigo} eliminada`);
+};
+
+ 
 
 // tabla PersonaCartilla get 
 // const PerCartilla= async(req,res)=>{
@@ -66,6 +92,10 @@ module.exports={
     createPersonas,
     deletePersonas,
 
+    //metodos de la tabla Cartillas
+    cartilla,
+    createCartilla,
+    deleteCartilla, 
     //metodos de la tablaPersonaCartilla
     // PerCartilla,
     // createPerCartilla,

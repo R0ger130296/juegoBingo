@@ -4,17 +4,19 @@ const {
     getPersonas,
     createPersonas,
     deletePersonas,
-    PerCartilla,
-    createPerCartilla,
-    deletePerCartilla}= require('../controllers/index.controller')
+    cartilla,
+    createCartilla,
+    deleteCartilla}= require('../controllers/index.controller')
 
 //rutas Tabla Personas
 router.get('/personas',getPersonas);
 router.post('/crearPersonas',createPersonas);
 router.delete('/deletePersonas/:clave',deletePersonas);
 
-//rutas Tabla PerCartilla
-// router.get('/perCartilla',PerCartilla);
-// router.post('/crearPerCartilla',createPerCartilla);
-// router.delete('/deletePerCartilla/:id',deletePerCartilla);
+
+//Rutasrabla Cartillas
+router.get('/cartillas',cartilla);
+router.post('/createCartilla',createCartilla);
+router.delete('/deleteCartilla/:codigo',deleteCartilla);
+
 module.exports =router;
