@@ -41,12 +41,12 @@ const cartilla= async(req,res)=>{
  };
  //tabla cartillas Create
  const createCartilla=async(req,res)=>{
- const {numeros,codigo}=req.body;
- const response = await pool.query('INSERT INTO cartillas(numeros,codigo) VALUES($1,$2)',[numeros,codigo]);
+ const {numeros,codigo,fkpersonas}=req.body;
+ const response = await pool.query('INSERT INTO cartillas(numeros,codigo,fkpersonas) VALUES($1,$2,$3)',[numeros,codigo,fkpersonas]);
  res.json({
      massage:'cartilla creado',
      body:{
-         user:{numeros,codigo}
+         user:{numeros,codigo,fkpersonas}
      }
     })
  };
