@@ -18,4 +18,25 @@ router.delete('/deletePersonas/:cedula',deletePersonas);
 router.get('/perCartilla',PerCartilla);
 router.post('/crearPerCartilla',createPerCartilla);
 router.delete('/deletePerCartilla/:id',deletePerCartilla);
+
+// servidor conectado@PaoNar
+
+router.get('/',(req, res)=>{
+    res.send('servidor conectado')
+}) 
+
+
+router.get('/api/casilla', (req, res)=>{
+    res.send(200, {cantidad: []})
+   
+    });
+
+
+router.post('/api/casilla', (req, res)=>{
+    console.log(req.body)
+    res.status(200).send({message:'Recibido'})
+
+})
+        
+
 module.exports =router;
