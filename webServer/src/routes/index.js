@@ -1,14 +1,5 @@
 const {Router} =require('express');
 const router =Router();
-const {getPersonas,createPersonas}= require('../controllers/index.controller')
-
-router.get('/personas',getPersonas);
-router.post('/crearPersonas',createPersonas);
-
-// TEST SERVER @molina99
-router.get('/', (req, res)=>{
-    res.send('METHOD GET ACTIVE');
-});
 
 // METHOD GET
 router.get('/get', (req, res)=>{
