@@ -36,29 +36,29 @@ const deletePersonas = async (req, res) => {
 
 
 // tabla PersonaCartilla get 
-const PerCartilla= async(req,res)=>{
-    const response= await pool.query('SELECT * FROM personacartilla');
-    res.json(response.rows);
- };
- //tabla PersonaCartilla Create
-const createPerCartilla=async(req,res)=>{
-    const {fkcartilla,fkpersona}=req.body;
-    const response = await pool.query('INSERT INTO personacartilla(fkcartilla,fkpersona) VALUES($1,$2)',[fkcartilla,fkpersona]);
-    res.json({
-        massage:'personacartilla creada',
-        body:{
-            user:{fkcartilla,fkpersona}
-        }
-       })
-    };
-    //tabla Personas Delete
-const deletePerCartilla = async (req, res) => {
-    const id = parseInt(req.params.id);
-    await pool.query('DELETE FROM personacartilla where id = $1', [
-        id
-    ]);
-    res.json(`personacartilla ${id} eliminada`);
-};
+// const PerCartilla= async(req,res)=>{
+//     const response= await pool.query('SELECT * FROM personacartilla');
+//     res.json(response.rows);
+//  };
+//  //tabla PersonaCartilla Create
+// const createPerCartilla=async(req,res)=>{
+//     const {fkcartilla,fkpersona}=req.body;
+//     const response = await pool.query('INSERT INTO personacartilla(fkcartilla,fkpersona) VALUES($1,$2)',[fkcartilla,fkpersona]);
+//     res.json({
+//         massage:'personacartilla creada',
+//         body:{
+//             user:{fkcartilla,fkpersona}
+//         }
+//        })
+//     };
+//     //tabla Personas Delete
+// const deletePerCartilla = async (req, res) => {
+//     const id = parseInt(req.params.id);
+//     await pool.query('DELETE FROM personacartilla where id = $1', [
+//         id
+//     ]);
+//     res.json(`personacartilla ${id} eliminada`);
+// };
 
 module.exports={
     //metodos de la tabla Personas
@@ -67,7 +67,7 @@ module.exports={
     deletePersonas,
 
     //metodos de la tablaPersonaCartilla
-    PerCartilla,
-    createPerCartilla,
-    deletePerCartilla
+    // PerCartilla,
+    // createPerCartilla,
+    // deletePerCartilla
 }
